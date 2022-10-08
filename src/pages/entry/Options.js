@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import ScoopOption from "./ScoopOption";
+import ToppingOption from "./ToppingOption";
 import Row from "react-bootstrap/Row";
+import axios from "axios";
 
 function Options({ optionType }) {
   const [items, setItems] = useState([]);
+
   // optionsType is 'scoops' or 'toppings'
   useEffect(() => {
-    fetch(`http://localhost:3030/${optionType}`)
-      .then((res) => res.json())
-      .then((data) => setItems(data.data))
+    axios(`http://localhost:3030/${optionType}`)
+      .then((res) => setItems(res.data))
       .catch((err) => {
         // TODO: handle error response
       });
   }, [optionType]);
 
   // TODO: replace 'null' with ToppingOption when available
-  const ItemComponent = optionType === "scoops" ? ScoopOption : null;
+  const ItemComponent = optionType === "scoops" ? ScoopOption : ToppingOption;
 
   const optionItems = items.map((item) => (
     <ItemComponent
@@ -24,6 +26,7 @@ function Options({ optionType }) {
       imagePath={item.imagePath}
     />
   ));
+
   return <Row>{optionItems}</Row>;
 }
 
