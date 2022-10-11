@@ -3,7 +3,7 @@ import {
   screen,
   waitFor,
 } from "../../../test-utils/testing-library-utils";
-import userEvent from "testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 import OrderEntry from "../OrderEntry";
 import { rest } from "msw";
 import { server } from "../../../mocks/server";
@@ -19,11 +19,8 @@ test("handles error for scoops and toppings routes", async () => {
   );
 
   render(<OrderEntry setOrderPhase={jest.fn()} />);
-
   await waitFor(async () => {
-    const alerts = await screen.findAllByRole("alert", {
-      name: "An unexpected error ocurred. Please try again later.",
-    });
+    const alerts = await screen.findAllByRole("alert");
 
     expect(alerts).toHaveLength(2);
   });

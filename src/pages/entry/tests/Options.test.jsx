@@ -39,7 +39,7 @@ test("don't update total if scoops input is invalid", async () => {
   const vanillaInput = await screen.findByRole("spinbutton", {
     name: "Vanilla",
   });
-  userEvent.clear();
+  userEvent.clear(vanillaInput);
   userEvent.type(vanillaInput, "-1");
 
   const scoopsSubtotal = screen.getByText("Scoops total: $0.00");

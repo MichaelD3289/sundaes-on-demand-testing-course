@@ -9,7 +9,7 @@ import userEvent from "@testing-library/user-event";
 test("initial conditions", () => {
   render(<SummaryForm />);
 
-  const confirmButton = screen.getByRole("button", { name: "Confirm Order" });
+  const confirmButton = screen.getByRole("button", { name: "Confirm order" });
   const termsCheckbox = screen.getByRole("checkbox", {
     name: /terms and conditions/i,
   });
@@ -21,7 +21,7 @@ test("initial conditions", () => {
 test("checkbox disables button on first click and enables on second click", () => {
   render(<SummaryForm />);
 
-  const confirmButton = screen.getByRole("button", { name: "Confirm Order" });
+  const confirmButton = screen.getByRole("button", { name: "Confirm order" });
   const termsCheckbox = screen.getByRole("checkbox", {
     name: /terms and conditions/i,
   });
